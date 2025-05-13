@@ -72,7 +72,7 @@ export default function CertificatePage() {
     <div className="min-h-screen p-0 m-0">
       <div className="w-full bg-[#1c2c40] h-[70px] flex justify-center items-center">
         <Image
-          src="/images/header.png"
+          src="/images/header.PNG"
           alt='Ministry of Health of the Republic of Uzbekistan'
           width={180}
           height={50}
