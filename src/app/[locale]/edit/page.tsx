@@ -58,7 +58,7 @@ export default function EditPage() {
     if (searchId) {
       setError("");
       setCertificate(null);
-      router.push(`/edit?id=${searchId}`);
+      router.push(`${locale == "ar" ? "" : "/en"}/edit?id=${searchId}`);
     }
   };
 
