@@ -9,8 +9,9 @@ import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 
 const Text = ({ name, info, upper }: { name: string, info?: string, upper?: boolean }) => {
+  const locale = useLocale();
   return (
-    <div className='mt-3'>
+    <div className='mt-3' dir={locale == "ar" ? "rtl" : "ltr"}>
       <span className='block text-[#999] font-[500] text-[14px] mb-[2px]'>{name}</span>
       <strong className={`block text-black font-bold text-[15px] ${upper ? "uppercase" : ""}`}>{info ?? "--"}</strong>
     </div>
@@ -89,7 +90,7 @@ export default function CertificatePage() {
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#1c2c40]"></div>
         </div>
       ) : (
-        <div className={`w-full max-w-[600px] mx-auto my-5 ${isRTL ? 'rtl' : 'ltr'}`} ref={certificateRef}>
+        <div className={`w-full max-w-[600px] px-3 mx-auto my-5 ${isRTL ? 'rtl' : 'ltr'}`} ref={certificateRef}>
           <Image
             className='mx-auto border-[2px] rounded-[10px] my-5'
             alt={certificate?.full_name ?? ""}
