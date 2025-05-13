@@ -1,0 +1,19 @@
+{
+  "certificates": [
+    {
+      "id": 1,
+      "place": "MEDICAL EXPRESS LABORATORY LLC",
+      "vaccine_name": "MENIVAX A C Y W",
+      "dose": "0,5ml",
+      "serial_number": "wewewesdsd",
+      "vaccination_date": "0033-03-23",
+      "passport": "pasport edit",
+      "full_name": "sssss",
+      "pin": "jshshir edit",
+      "birth_date": "2005-06-08",
+      "sex": "male",
+      "createdAt": "2025-02-08T04:41:27.000Z",
+      "updatedAt": "2025-02-08T04:58:27.220Z"
+    }
+  ]
+}

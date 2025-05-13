@@ -1,0 +1,9 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "masanov3167@gmail.com",
+      "password": "$2a$10$YourHashedPasswordHere"
+    }
+  ]
+}
