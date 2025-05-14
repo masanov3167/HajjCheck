@@ -12,20 +12,20 @@ export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef 
     return (
         <div className="w-[794px] h-[1123px] border mx-auto bg-white p-16 mb-5 absolute -left-[2000px]" ref={certificateRef}>
             <div className='border border-gray-400'>
-                <div className="flex justify-between items-center p-2 border-b border-gray-400">
+                <div className="flex justify-between items-center px-1 border-b border-gray-400">
                     <div className="w-1/4">
                         <img
                             src={data.photo_url}
                             alt="Person Photo"
-                            className="border border-gray-400 h-36 w-32"
+                            className="border border-gray-400 h-[160px] w-32"
                         />
                     </div>
 
-                    <div className="w-1/2 flex flex-col items-center">
+                    <div className="w-1/2 flex p-2 flex-col items-center">
                         <img
                             src="/images/saudi_logo.png"
                             alt="Saudi Logo"
-                            className="h-[100px] w-[100px]"
+                            className="h-[90px] w-[90px]"
                         />
                         <div className="text-center -mt-2 font-bold">
                             <p className="text-xs font-bold ">تصريح دخول للمشاعر المقدسة</p>
@@ -34,7 +34,7 @@ export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef 
                         </div>
                     </div>
 
-                    <div className="w-1/4 flex flex-col items-end">
+                    <div className="w-1/4 flex p-2 flex-col items-end">
                         <img
                             src="/images/vision_logo.png"
                             alt="Saudi Logo"
@@ -145,7 +145,7 @@ export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef 
                 <div className="p-2 ">
                     <div className="flex">
                         <div className="w-[100px] flex justify-center items-center">
-                            <QrCode setGeneratedPdf={setGeneratedPdf} link={`${process.env.NEXT_PUBLIC_DOMEN!}/${1}`} />
+                            <QrCode setGeneratedPdf={setGeneratedPdf} link={`${process.env.NEXT_PUBLIC_DOMEN!}/${data.number}`} />
                         </div>
                         <div className="w-[calc(100%-100px)]">
                             <p className="text-sm text-gray-700 text-right">تعليمات:</p>

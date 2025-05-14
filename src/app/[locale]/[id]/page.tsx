@@ -114,7 +114,7 @@ export default function CertificatePage() {
       });
 
       pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      pdf.save(`certificate-${certificate?.full_name ?? 1}.pdf`);
+      pdf.save(`Tasreeh-${certificate?.full_name ?? 1}.pdf`);
 
       // Klonlangan elementni o'chirish
       document.body.removeChild(clonedCert);
