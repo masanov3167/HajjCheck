@@ -149,7 +149,7 @@ export default function CertificatePage() {
       ) : (
         <div className={`w-full max-w-[600px] px-3 mx-auto mt-5 mb-24 ${isRTL ? 'rtl' : 'ltr'}`}>
           <Image
-            className='mx-auto border-[2px] rounded-[10px] my-5'
+            className='mx-auto border-[2px] rounded-[10px] my-5 h-36 w-32'
             alt={certificate?.full_name ?? ""}
             width={150}
             height={100}
