@@ -21,7 +21,7 @@ export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef 
                         />
                     </div>
 
-                    <div className="w-1/2 flex p-2 flex-col items-center">
+                    <div className="w-1/2 flex p-2 -mt-4 flex-col items-center">
                         <img
                             src="/images/saudi_logo.png"
                             alt="Saudi Logo"
