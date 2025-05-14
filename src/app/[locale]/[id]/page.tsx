@@ -153,7 +153,7 @@ export default function CertificatePage() {
             alt={certificate?.full_name ?? ""}
             width={150}
             height={100}
-            src={certificate?.photo_url ?? ""}
+            src={certificate?.photo_url ? `https://absheerchecktasreeh.com${certificate?.photo_url}` : ""}
           />
 
           <Text name={t("name")} info={certificate?.full_name} upper />
