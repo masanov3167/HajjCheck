@@ -11,8 +11,8 @@ const inter = Inter({
   variable: "--font-inter", // CSS da ishlatish uchun o'zgaruvchi yaratish
 });
 export const metadata: Metadata = {
-  title: 'Vaksinatsiya sertifikati',
-  description: 'Vaksinatsiya sertifikatini yaratish va tahrirlash tizimi'
+  title: 'Hajj permit',
+  description: 'Hajj permit'
 };
 
 

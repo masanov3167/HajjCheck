@@ -27,7 +27,7 @@ export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef 
                             alt="Saudi Logo"
                             className="h-[100px] w-[100px]"
                         />
-                        <div className="text-center mt-2 font-bold">
+                        <div className="text-center -mt-2 font-bold">
                             <p className="text-xs font-bold ">تصريح دخول للمشاعر المقدسة</p>
                             <p className="text-xs font-bold">عام موسم حج 1446 هـ</p>
                             <p className="text-xs ">غير مصرح لحامله أداء فريضة الحج</p>
@@ -38,7 +38,7 @@ export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef 
                         <img
                             src="/images/vision_logo.png"
                             alt="Saudi Logo"
-                            className="h-[140px] w-[140px]"
+                            className="h-[150px] w-[150px]"
                         />
                     </div>
                 </div>

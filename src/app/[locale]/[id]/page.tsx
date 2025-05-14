@@ -149,11 +149,11 @@ export default function CertificatePage() {
       ) : (
         <div className={`w-full max-w-[600px] px-3 mx-auto mt-5 mb-24 ${isRTL ? 'rtl' : 'ltr'}`}>
           <Image
-            className='mx-auto border-[2px] rounded-[10px] my-5 h-36 w-32'
+            className='mx-auto border-[2px] rounded-[10px] my-5'
             alt={certificate?.full_name ?? ""}
             width={150}
             height={100}
-            src={certificate?.photo_url ? `https://absheerchecktasreeh.com${certificate?.photo_url}` : ""}
+            src={certificate?.photo_url ?? ""}
           />
 
           <Text name={t("name")} info={certificate?.full_name} upper />
