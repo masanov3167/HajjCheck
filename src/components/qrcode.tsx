@@ -26,7 +26,7 @@ const QrCode: React.FC<QrCodeProps> = ({ link, size = 200, setGeneratedPdf }) =>
 
 
     return (
-        <div className="w-[165px] h-[166px]">
+        <div className="w-[100px] h-[100px]">
             {qrSrc ? (
                 <img src={qrSrc} alt="QR Code" className="w-auto h-auto" />
             ) : (

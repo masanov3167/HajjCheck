@@ -1,130 +1,176 @@
-'use client';
+import { Dispatch, RefObject, SetStateAction } from 'react';
+import QrCode from './qrcode';
+import { ICertificat } from '@/types/certificate';
 
-import Image from 'next/image';
-
-interface WorkPermitCardProps {
-    fullName: string;
-    permitNumber: string;
-    issueDate: string;
-    expiryDate: string;
-    residenceNumber: string;
-    nationality: string;
-    gender: string;
-    companyName: string;
-    purpose: string;
-    photoUrl: string;
+type Props = {
+    data: ICertificat,
+    setGeneratedPdf: Dispatch<SetStateAction<boolean>>,
+    certificateRef: RefObject<HTMLDivElement>,
 }
 
-export default function WorkPermitCard({
-    fullName,
-    permitNumber,
-    issueDate,
-    expiryDate,
-    residenceNumber,
-    nationality,
-    gender,
-    companyName,
-    purpose,
-    photoUrl
-}: WorkPermitCardProps) {
-    const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('ar-SA-u-ca-islamic', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-        });
-    };
-
+export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef }: Props) {
     return (
-        <div className="max-w-md mx-auto bg-white shadow-lg rounded-2xl border border-gray-200 overflow-hidden">
-            {/* Header with Saudi Logo and Vision 2030 */}
-            <div className="flex justify-between items-center p-4 border-b">
-                <div className="w-16 h-16 relative">
-                    <Image
-                        src="/saudi-logo.png"
-                        alt="Saudi Arabia Logo"
-                        layout="fill"
-                        objectFit="contain"
-                    />
+        <div className="w-[794px] h-[1123px] border mx-auto bg-white p-16 mb-5 absolute -left-[2000px]" ref={certificateRef}>
+            <div className='border border-gray-400'>
+                <div className="flex justify-between items-center p-2 border-b border-gray-400">
+                    <div className="w-1/4">
+                        <img
+                            src={data.photo_url}
+                            alt="Person Photo"
+                            className="border border-gray-400 h-36 w-32"
+                        />
+                    </div>
+
+                    <div className="w-1/2 flex flex-col items-center">
+                        <img
+                            src="/images/saudi_logo.png"
+                            alt="Saudi Logo"
+                            className="h-[100px] w-[100px]"
+                        />
+                        <div className="text-center mt-2 font-bold">
+                            <p className="text-xs font-bold ">تصريح دخول للمشاعر المقدسة</p>
+                            <p className="text-xs font-bold">عام موسم حج 1446 هـ</p>
+                            <p className="text-xs ">غير مصرح لحامله أداء فريضة الحج</p>
+                        </div>
+                    </div>
+
+                    <div className="w-1/4 flex flex-col items-end">
+                        <img
+                            src="/images/vision_logo.png"
+                            alt="Saudi Logo"
+                            className="h-[140px] w-[140px]"
+                        />
+                    </div>
                 </div>
-                <div className="text-right">
-                    <h2 className="text-sm font-bold text-gray-700">المملكة العربية السعودية</h2>
-                    <p className="text-xs text-gray-500">وزارة الموارد البشرية والتنمية الاجتماعية</p>
-                    <Image
-                        src="/vision2030.png"
-                        alt="Vision 2030"
-                        width={80}
-                        height={30}
-                    />
+
+                {/* Permit Number Row */}
+                <div className="flex border-b border-gray-400">
+                    <div className="w-3/4 h-14 flex justify-center  border-r border-gray-400">
+                        <p className="text-sm font-[500] pt-2">{data?.permit_number ?? "--"}</p>
+                    </div>
+                    <div className="w-1/4 h-14 flex justify-center pt-2">
+                        <p className="text-sm  text-gray-700">رقم التصريح</p>
+                    </div>
+                </div>
+                {/* Name Row */}
+                <div className="flex border-b border-gray-400">
+                    <div className="w-3/4 h-14 flex justify-center  border-r border-gray-400">
+                        <p className="text-sm font-[500] pt-2">{data?.full_name ?? "--"}</p>
+                    </div>
+                    <div className="w-1/4 h-14 flex justify-center pt-2">
+                        <p className="text-sm  text-gray-700">اسم المقيم</p>
+                    </div>
+                </div>
+
+
+                {/* Dates Row */}
+                <div className="flex border-b border-gray-400">
+                    <div className="w-1/4 h-14 flex  justify-center  border-r border-gray-400">
+                        <p className="text-sm  pt-2">{data?.expiryDate ?? "--"}</p>
+                    </div>
+                    <div className="w-1/4 h-14 flex  justify-center  border-r border-gray-400">
+                        <p className="text-sm pt-2 text-gray-700">تاريخ انتهاء التصريح</p>
+                    </div>
+                    <div className="w-1/4 h-14 flex  justify-center  border-r border-gray-400">
+                        <p className="text-sm pt-2">{data?.issueDate ?? "--"}</p>
+                    </div>
+                    <div className="w-1/4 h-14 flex  justify-center">
+                        <p className="text-sm pt-2 text-gray-700">تاريخ إصدار التصريح</p>
+                    </div>
+                </div>
+
+                {/* ID Number Row */}
+                <div className="flex border-b border-gray-400">
+                    <div className="w-3/4 border-r border-gray-400 h-14 flex  justify-center">
+                        <p className="text-sm pt-2">{data?.document_number ?? "--"}</p>
+                    </div>
+                    <div className="w-1/4 h-14 flex  justify-center">
+                        <p className="text-sm text-gray-700 pt-2">رقم الإقامة/الحدود</p>
+                    </div>
+                </div>
+
+                {/* Nationality Row */}
+                <div className="flex border-b border-gray-400">
+                    <div className="w-3/4 h-14 border-r border-gray-400  flex justify-center">
+                        <p className="text-sm pt-2">{data?.nationality ?? "--"}</p>
+                    </div>
+                    <div className="w-1/4 h-14 text-right flex justify-center">
+                        <p className="text-sm  text-gray-700 pt-2">الجنسية</p>
+                    </div>
+                </div>
+
+                {/* Gender Row */}
+                <div className="flex border-b border-gray-400">
+                    <div className="w-3/4 h-14 border-r border-gray-400 flex justify-center">
+                        <p className="text-sm pt-2">{data?.gender ?? "--"}</p>
+                    </div>
+                    <div className="w-1/4 h-14 flex justify-center">
+                        <p className="text-sm text-gray-700 pt-2">الجنس</p>
+                    </div>
+                </div>
+
+                {/* Company Name Row */}
+                <div className="flex">
+                    <div className="w-3/4 h-14 border-r border-gray-400 flex justify-center">
+                        <p className="text-sm pt-2">{data?.company_number ?? "--"}</p>
+                    </div>
+                    <div className="w-1/4 h-14 text-right flex justify-center">
+                        <p className="text-sm text-gray-700 pt-2">اسم الشركة/المؤسسة</p>
+                    </div>
                 </div>
             </div>
-
-            {/* Profile Section */}
-            <div className="flex p-4 space-x-4 border-b">
-                <div className="w-32 h-40 border-2 border-gray-300 rounded-lg overflow-hidden">
-                    <Image
-                        src={photoUrl}
-                        alt={fullName}
-                        width={128}
-                        height={160}
-                        objectFit="cover"
-                    />
+            <div className="mt-5 border border-gray-400">
+                {/* Job Type Row */}
+                <div className="flex border-b border-gray-400">
+                    <div className="w-3/4 h-14 border-r border-gray-400 flex justify-center">
+                        <p className="text-sm pt-2">{data?.blood_type ?? "--"}</p>
+                    </div>
+                    <div className="w-1/4 h-14 flex justify-center">
+                        <p className="text-sm text-gray-700 pt-2">غرض التصريح</p>
+                    </div>
                 </div>
-                <div className="flex-1 space-y-2">
-                    <div className="flex justify-between">
-                        <span className="text-sm font-semibold text-gray-600">اسم المُقيم</span>
-                        <span className="text-sm text-gray-800">{fullName}</span>
+
+                {/* Permit Status Row */}
+                <div className="flex">
+                    <div className="w-3/4 h-[100px] border-r border-gray-400 flex justify-center">
+                        <p className="text-sm">{data?.permit_type ?? "--"}</p>
                     </div>
-                    <div className="flex justify-between">
-                        <span className="text-sm font-semibold text-gray-600">رقم التصريح</span>
-                        <span className="text-sm text-gray-800">{permitNumber}</span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="text-sm font-semibold text-gray-600">تاريخ الإصدار</span>
-                        <span className="text-sm text-gray-800">{formatDate(issueDate)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="text-sm font-semibold text-gray-600">تاريخ الانتهاء</span>
-                        <span className="text-sm text-gray-800">{formatDate(expiryDate)}</span>
+                    <div className="w-1/4 h-[100px] flex items-center justify-center">
+                        <p className="text-sm text-gray-700 -mt-5">وصف غرض التصريح</p>
                     </div>
                 </div>
             </div>
+            <div className="mt-5 border border-gray-400">
+                {/* Instructions Section */}
+                <div className="p-2 ">
+                    <div className="flex">
+                        <div className="w-[100px] flex justify-center items-center">
+                            <QrCode setGeneratedPdf={setGeneratedPdf} link={`${process.env.NEXT_PUBLIC_DOMEN!}/${1}`} />
+                        </div>
+                        <div className="w-[calc(100%-100px)]">
+                            <p className="text-sm text-gray-700 text-right">تعليمات:</p>
+                            <ol className="text-xs text-right font-[500] custom-list" dir="rtl">
+                                <li className="mt-1">
+                                    <span className="mr-1">1.</span>
+                                    يجب إحضار صورة المقيم 4×6 (في حال عدم وجودها آلياً) وضع ختم المنشأة عليها.
+                                </li>
+                                <li className="mt-1">
+                                    <span className="mr-1">2.</span>
+                                    تتعهد الشركة / المؤسسة بعدم السماح لحاملها تجاوز التصريح بأداء فريضة الحج.
+                                </li>
+                                <li className="mt-1">
+                                    <span className="mr-1">3.</span>
+                                    يجب إبراز تصريح العمل وهوية مقيم لدى النقاط الأمنية.
+                                </li>
+                            </ol>
 
-            {/* Details Section */}
-            <div className="p-4 border-b">
-                <div className="grid grid-cols-2 gap-2">
-                    <div className="flex justify-between">
-                        <span className="text-sm font-semibold text-gray-600">رقم الإقامة</span>
-                        <span className="text-sm text-gray-800">{residenceNumber}</span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="text-sm font-semibold text-gray-600">الجنسية</span>
-                        <span className="text-sm text-gray-800">{nationality}</span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="text-sm font-semibold text-gray-600">الجنس</span>
-                        <span className="text-sm text-gray-800">{gender === 'male' ? 'ذكر' : 'أنثى'}</span>
-                    </div>
-                    <div className="flex justify-between">
-                        <span className="text-sm font-semibold text-gray-600">اسم الشركة</span>
-                        <span className="text-sm text-gray-800">{companyName}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            {/* Footer with QR Code and Additional Details */}
-            <div className="flex justify-between items-center p-4">
-                <div className="w-24 h-24">
-                    {/* <QRCodeSVG
-                        value={`${fullName}|${permitNumber}|${issueDate}|${expiryDate}`}
-                        size={96}
-                    /> */}
-                </div>
-                <div className="text-right">
-                    <p className="text-xs text-gray-600">{purpose}</p>
-                    <p className="text-xs text-gray-500">تاريخ الطباعة: {new Date().toLocaleDateString('ar-SA')}</p>
-                </div>
+            {/* Footer */}
+            <div className="p-2 text-right">
+                <p className="text-sm text-gray-700">تاريخ الطباعة: {data?.printDate ?? "--"}</p>
             </div>
         </div>
     );

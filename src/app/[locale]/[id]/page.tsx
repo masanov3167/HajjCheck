@@ -3,10 +3,13 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import useWindowWidth from '@/hooks/useWindowWidth';
 import { ICertificat } from '@/types/certificate';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
+import DownloadButton from '@/components/downloadButton';
+import SaudiPermitCard from '@/components/workPermitCard';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 const Text = ({ name, info, upper }: { name: string, info?: string, upper?: boolean }) => {
   const locale = useLocale();
@@ -24,11 +27,12 @@ export default function CertificatePage() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const certificateRef = useRef<HTMLDivElement>(null);
-  const width = useWindowWidth();
   const locale = useLocale();
   const t = useTranslations("single");
   const te = useTranslations("header")
   const isRTL = locale === "ar";
+  const [generatedPdf, setGeneratedPdf] = useState<boolean>(false);
+  const [pdfLoading, setPdfLoading] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchCertificate = async () => {
@@ -69,6 +73,59 @@ export default function CertificatePage() {
     );
   }
 
+  const onDownload = async () => {
+    try {
+      if (!certificateRef.current) return;
+      setPdfLoading(true);
+
+      // CSS optimallashtirilgan klonni yaratish
+      const clonedCert = certificateRef.current.cloneNode(true) as HTMLDivElement;
+      clonedCert.style.display = 'block';
+      clonedCert.style.position = 'absolute';
+      clonedCert.style.left = '-9999px';
+      clonedCert.style.top = '0';
+      document.body.appendChild(clonedCert);
+
+      // PDF konfiguratsiyalari
+      const options = {
+        scale: 3, // qalinlik (quality)
+        useCORS: true,
+        logging: false,
+        allowTaint: true,
+        letterRendering: true,
+        foreignObjectRendering: false, // Yaxshiroq matn renderingi uchun
+      };
+
+      // Renderingdan oldin biroz kutish - stillar to'liq qo'llanishi uchun
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const canvas = await html2canvas(clonedCert, options);
+
+      // PDF hajmi va sifatini optimallash
+      const imgWidth = 210; // A4 enini mm da
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const imgData = canvas.toDataURL('image/png', 1.0);
+
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+        compress: true
+      });
+
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save(`certificate-${certificate?.full_name ?? 1}.pdf`);
+
+      // Klonlangan elementni o'chirish
+      document.body.removeChild(clonedCert);
+      setPdfLoading(false);
+    } catch (error) {
+      console.error('PDF yaratishda xatolik:', error);
+      setError('PDF faylni yuklab olishda xatolik yuz berdi');
+      setPdfLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen p-0 m-0">
       <div className="w-full bg-[#1c2c40] h-[70px] flex justify-center items-center">
@@ -90,7 +147,7 @@ export default function CertificatePage() {
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#1c2c40]"></div>
         </div>
       ) : (
-        <div className={`w-full max-w-[600px] px-3 mx-auto my-5 ${isRTL ? 'rtl' : 'ltr'}`} ref={certificateRef}>
+        <div className={`w-full max-w-[600px] px-3 mx-auto mt-5 mb-24 ${isRTL ? 'rtl' : 'ltr'}`}>
           <Image
             className='mx-auto border-[2px] rounded-[10px] my-5'
             alt={certificate?.full_name ?? ""}
@@ -126,8 +183,16 @@ export default function CertificatePage() {
           <Text name={t("accommodation_name_in_mecca")} info={certificate?.accommodation_in_mecca} upper />
           <hr className='mt-3 border' />
           <Text name={t("accommodation_name_in_medina")} info={certificate?.accommodation_in_medina} upper />
+
+          <DownloadButton currentLanguage={locale as any} isLoading={pdfLoading} handleDownload={onDownload} />
         </div>
       )}
+
+      {
+        certificate && (
+          <SaudiPermitCard certificateRef={certificateRef} data={certificate} setGeneratedPdf={setGeneratedPdf} />
+        )
+      }
     </div>
   );
 }

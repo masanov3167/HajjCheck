@@ -123,18 +123,18 @@ export async function PUT(
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
   
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'user_images');
+      const uploadDir = path.join(process.cwd(), 'public', 'images', 'user_images');
       const fileExt = file.name.split('.').pop();
       const fileName = `${uuidv4()}.${fileExt}`;
       const filePath = path.join(uploadDir, fileName);
       await writeFile(filePath, buffer);
-      certificateData.photo_url = `/uploads/user_images/${fileName}`;
+      certificateData.photo_url = `/images/user_images/${fileName}`;
     }
     console.log(certificateData);
     
 
     // Ma'lumotlarni yangilash
-    const updatedCertificate = await updateCertificate(params.id, certificateData, token);
+    const updatedCertificate = await updateCertificate(params.id, certificateData, token, locale);
     return NextResponse.json(updatedCertificate);
   } catch (error: any) {
     return NextResponse.json(

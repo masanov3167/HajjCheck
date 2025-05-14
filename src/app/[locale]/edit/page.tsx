@@ -73,7 +73,7 @@ export default function EditPage() {
     <div className="min-h-screen bg-gray-100 p-4">
       <Header />
       {error && (
-        <div className="text-red-500 mb-4">
+        <div className="text-red-500 max-w-[1000px] w-full mx-auto mb-4">
           {error}
         </div>
       )}

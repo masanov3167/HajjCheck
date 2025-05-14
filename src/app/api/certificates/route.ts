@@ -46,13 +46,13 @@ export async function POST(req: Request) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'user_images');
+      const uploadDir = path.join(process.cwd(), 'public', 'images', 'user_images');
       const fileExt = file.name.split('.').pop();
       const fileName = `${uuidv4()}.${fileExt}`;
       const filePath = path.join(uploadDir, fileName);
 
       await writeFile(filePath, buffer);
-      photo_url = `/uploads/user_images/${fileName}`;
+      photo_url = `/images/user_images/${fileName}`;
     }
 
     // FormData'dan qiymatlarni yechib olish va ICertificat interfeysiga moslashtirish
@@ -88,10 +88,12 @@ export async function POST(req: Request) {
       permit_number: formData.get('permit_number')?.toString() || undefined,
     };
 
-    const certificate = await createCertificate(certificateData, token);
+    const certificate = await createCertificate(certificateData, token, locale);
 
     return NextResponse.json(certificate);
   } catch (error: any) {
+    console.log(error);
+    
     if (error?.code == 11000) {
       return NextResponse.json(
         { error: tt('error.invalidNumber', locale) },
@@ -120,7 +122,7 @@ export async function GET(request: Request) {
   const token = authHeader.split(' ')[1];
 
   try {
-    const certificates = await getCertificates(token);
+    const certificates = await getCertificates(token, locale);
     return NextResponse.json(certificates);
   } catch (error: any) {
     return NextResponse.json(
