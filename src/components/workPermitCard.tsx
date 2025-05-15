@@ -152,17 +152,17 @@ export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef 
                             <QrCode setGeneratedPdf={setGeneratedPdf} link={`${process.env.NEXT_PUBLIC_DOMEN!}/${data.number}`} />
                         </div>
                         <div className="w-[calc(100%-100px)]">
-                            <p className="text-sm text-gray-700 text-right">تعليمات:</p>
-                            <ol className="text-xs text-right font-[500] custom-list" dir="rtl">
-                                <li className="mt-1">
+                            <p className="text-sm text-gray-700 text-right text-[17px]">تعليمات:</p>
+                            <ol className="text-xs text-right custom-list" dir="rtl">
+                                <li className="mt-[8px] text-[17px]">
                                     <span className="mr-1">1.</span>
                                     يجب إحضار صورة المقيم 4×6 (في حال عدم وجودها آلياً) وضع ختم المنشأة عليها.
                                 </li>
-                                <li className="mt-1">
+                                <li className="mt-[8px] text-[17px]">
                                     <span className="mr-1">2.</span>
                                     تتعهد الشركة / المؤسسة بعدم السماح لحاملها تجاوز التصريح بأداء فريضة الحج.
                                 </li>
-                                <li className="mt-1">
+                                <li className="mt-[8px] text-[17px]">
                                     <span className="mr-1">3.</span>
                                     يجب إبراز تصريح العمل وهوية مقيم لدى النقاط الأمنية.
                                 </li>

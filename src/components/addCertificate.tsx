@@ -176,7 +176,7 @@ export default function AddCertificateForm({ data, locale }: FormProps) {
         number: data?.number || '',
         full_name: data?.full_name || '',
         nationality: data?.nationality || '',
-        gender: data?.gender || 'male',
+        gender: data?.gender || '',
         permit_type: data?.permit_type || '',
         organization: data?.organization || '',
         photo_url: data?.photo_url || undefined,
@@ -243,20 +243,7 @@ export default function AddCertificateForm({ data, locale }: FormProps) {
                             <FormInput label={t('expiryDate')} fieldName='expiryDate' rtl={isRtl} />
                             <FormInput label={t('idNumber')} fieldName='document_number' rtl={isRtl} />
                             <FormInput label={t('nationality')} fieldName='nationality' rtl={isRtl} />
-                            <div className="col-span-2 md:col-span-1">
-                                <label className={`block text-sm font-bold text-gray-700 ${isRtl ? 'text-right' : ''}`}>
-                                    {t('gender')}
-                                </label>
-                                <Field
-                                    as="select"
-                                    name="gender"
-                                    className={`mt-1 block w-full rounded-md border px-2 py-1 ${isRtl ? 'text-right' : ''}`}
-                                    dir={isRtl ? 'rtl' : 'ltr'}
-                                >
-                                    <option value="male">{t('male')}</option>
-                                    <option value="female">{t('female')}</option>
-                                </Field>
-                            </div>
+                            <FormInput label={t('gender')} fieldName='gender' rtl={isRtl} />
                             <FormInput label={t('companyNumber')} fieldName='company_number' rtl={isRtl} />
                             <FormInput label={t('permitType')} fieldName='permit_type' rtl={isRtl} />
                             <FormInput label={t('purposeOfPermit')} fieldName='purposeOfPermit' rtl={isRtl} />

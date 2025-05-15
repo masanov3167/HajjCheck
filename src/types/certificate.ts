@@ -19,7 +19,7 @@ export interface ICertificat {
     number: string;                
     full_name?: string;           
     nationality?: string;         
-    gender?: 'male' | 'female';   
+    gender?: string;   
     permit_type?: string;         
     organization?: string;       
     photo_url?: string;
