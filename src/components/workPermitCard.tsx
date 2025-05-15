@@ -10,7 +10,7 @@ type Props = {
 
 export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef }: Props) {
     return (
-        <div className="w-[794px] h-[1123px] border mx-auto bg-white p-16 mb-5 absolute  " ref={certificateRef}>
+        <div className="w-[794px] h-[1123px] border mx-auto bg-white p-16 mb-5 absolute  -left-[2000px]" ref={certificateRef}>
             <div className='border border-gray-400'>
                 <div className="flex justify-between items-center px-1 border-b border-gray-400">
                     <div className="w-1/4">
