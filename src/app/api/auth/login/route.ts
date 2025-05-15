@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   try {
     const { email, password } = await request.json();
     
-    if (email !== 'admin@hajjcheck.io' || password !== 'Adm1n!@2025#Hajj$Secure') {
+    if (email !== 'x_adm2025$@hajjcheck.io' || password !== 'Hajj!@2025#S3cUr3$Zx9&AdmN') {
       return NextResponse.json(
         { error: lang == "en" ? errors["en"].error : errors["ar"].error },
         { status: 401 }

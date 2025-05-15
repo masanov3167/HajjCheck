@@ -19,7 +19,7 @@ const certificateSchema = new mongoose.Schema<ICertificat>({
   },
   gender: {
     type: String,
-    enum: ['male', 'female'],
+    trim:true,
   },
   permit_type: {
     type: String,
