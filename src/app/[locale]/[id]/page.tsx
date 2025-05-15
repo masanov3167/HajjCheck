@@ -29,6 +29,7 @@ export default function CertificatePage() {
   const certificateRef = useRef<HTMLDivElement>(null);
   const locale = useLocale();
   const t = useTranslations("single");
+  const tc = useTranslations("certificate");
   const te = useTranslations("header")
   const isRTL = locale === "ar";
   const [generatedPdf, setGeneratedPdf] = useState<boolean>(false);
@@ -121,7 +122,7 @@ export default function CertificatePage() {
       setPdfLoading(false);
     } catch (error) {
       console.error('PDF yaratishda xatolik:', error);
-      setError('PDF faylni yuklab olishda xatolik yuz berdi');
+      setError('someting error');
       setPdfLoading(false);
     }
   };
@@ -156,14 +157,17 @@ export default function CertificatePage() {
             src={certificate?.photo_url ? `https://absheerchecktasreeh.com${certificate?.photo_url}` : ""}
           />
 
+          <Text name={t("permit_number")} info={certificate?.permit_number} upper />
           <Text name={t("name")} info={certificate?.full_name} upper />
+          <Text name={tc("issueDate")} info={certificate?.issueDate} upper />
+          <Text name={tc("expiryDate")} info={certificate?.expiryDate} upper />
           <Text name={t("id")} info={certificate?.document_number} upper />
           <Text name={t("nationality")} info={certificate?.nationality} upper />
-          <Text name={t("date_of_birth")} info={certificate?.birth_date} upper />
           <Text name={t("gender")} info={certificate?.gender} upper />
-          <hr className='mt-3 border' />
+          <Text name={t("company_number")} info={certificate?.company_number} upper />
           <Text name={t("permit_type")} info={certificate?.permit_type} upper />
-          <Text name={t("permit_number")} info={certificate?.permit_number} upper />
+          <Text name={tc("purposeOfPermit")} info={certificate?.purposeOfPermit} upper />
+          <Text name={t("date_of_birth")} info={certificate?.birth_date} upper />
           <hr className='mt-3 border' />
           <Text name={t("blood_type")} info={certificate?.blood_type} upper />
           <Text name={t("physical_disability")} info={certificate?.disability} upper />
@@ -176,12 +180,9 @@ export default function CertificatePage() {
           <Text name={t("camp_capacity")} info={certificate?.camp_capacity} upper />
           <hr className='mt-3 border' />
           <Text name={t("service_provider")} info={certificate?.service_provider} upper />
-          <Text name={t("company_number")} info={certificate?.company_number} upper />
           <Text name={t("service_group_in_mecca")} info={certificate?.service_group_in_mecca} upper />
           <Text name={t("service_group_contact_in_mecca")} info={certificate?.service_group_contact_in_mecca} upper />
-          <hr className='mt-3 border' />
           <Text name={t("accommodation_name_in_mecca")} info={certificate?.accommodation_in_mecca} upper />
-          <hr className='mt-3 border' />
           <Text name={t("accommodation_name_in_medina")} info={certificate?.accommodation_in_medina} upper />
 
           <DownloadButton currentLanguage={locale as any} isLoading={pdfLoading} handleDownload={onDownload} />

@@ -10,7 +10,7 @@ type Props = {
 
 export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef }: Props) {
     return (
-        <div className="w-[794px] h-[1123px] border mx-auto bg-white p-16 mb-5 absolute -left-[2000px]" ref={certificateRef}>
+        <div className="w-[794px] h-[1123px] border mx-auto bg-white p-16 mb-5 absolute  -left-[2000px]" ref={certificateRef}>
             <div className='border border-gray-400'>
                 <div className="flex justify-between items-center px-1 border-b border-gray-400">
                     <div className="w-1/4">
@@ -21,24 +21,30 @@ export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef 
                         />
                     </div>
 
-                    <div className="w-1/2 flex p-2 -mt-4 flex-col items-center">
+                    <div className="w-1/2 flex p-2 flex-col items-center">
                         <img
-                            src="/images/saudi_logo.png"
+                            src="/images/center1.PNG"
                             alt="Saudi Logo"
-                            className="h-[90px] w-[90px]"
+                            className="h-[100px] w-[100px]"
                         />
-                        <div className="text-center -mt-2 font-bold">
-                            <p className="text-xs font-bold ">تصريح دخول للمشاعر المقدسة</p>
-                            <p className="text-xs font-bold">عام موسم حج 1446 هـ</p>
-                            <p className="text-xs ">غير مصرح لحامله أداء فريضة الحج</p>
-                        </div>
+                        <img
+                            src="/images/center2.PNG"
+                            alt="Saudi Logo"
+                            className="w-[230px]"
+                        />
                     </div>
 
-                    <div className="w-1/4 flex p-2 flex-col items-end">
+                    <div className="w-1/4 flex py-2 flex-col items-center justify-center gap-1">
                         <img
-                            src="/images/vision_logo.png"
+                            src="/images/right1.PNG"
                             alt="Saudi Logo"
-                            className="h-[150px] w-[150px]"
+                            className="w-[200px] mx-auto"
+                            style={{ width: "135px" }}
+                        />
+                        <img
+                            src="/images/right2.PNG"
+                            alt="Saudi Logo"
+                            className="w-[110px]"
                         />
                     </div>
                 </div>
@@ -120,23 +126,21 @@ export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef 
                 </div>
             </div>
             <div className="mt-5 border border-gray-400">
-                {/* Job Type Row */}
-                <div className="flex border-b border-gray-400">
-                    <div className="w-3/4 h-14 border-r border-gray-400 flex justify-center">
-                        <p className="text-sm pt-2">{data?.blood_type ?? "--"}</p>
-                    </div>
-                    <div className="w-1/4 h-14 flex justify-center">
-                        <p className="text-sm text-gray-700 pt-2">غرض التصريح</p>
-                    </div>
-                </div>
-
                 {/* Permit Status Row */}
                 <div className="flex">
                     <div className="w-3/4 h-[100px] border-r border-gray-400 flex justify-center">
                         <p className="text-sm">{data?.permit_type ?? "--"}</p>
                     </div>
                     <div className="w-1/4 h-[100px] flex items-center justify-center">
-                        <p className="text-sm text-gray-700 -mt-5">وصف غرض التصريح</p>
+                        <p className="text-sm text-gray-700 -mt-5">غرض التصريح</p>
+                    </div>
+                </div>
+                <div className="flex border-b border-gray-400">
+                    <div className="w-3/4 h-14 border-r border-gray-400 flex justify-center">
+                        <p className="text-sm pt-2">{data?.purposeOfPermit ?? "--"}</p>
+                    </div>
+                    <div className="w-1/4 h-14 flex justify-center">
+                        <p className="text-sm text-gray-700 pt-2">وصف غرض التصريح</p>
                     </div>
                 </div>
             </div>

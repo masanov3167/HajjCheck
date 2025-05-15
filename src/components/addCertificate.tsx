@@ -237,11 +237,12 @@ export default function AddCertificateForm({ data, locale }: FormProps) {
                             />
 
                             <FormInput colSpan={2} label={t('certificateId')} fieldName='number' rtl={isRtl} />
+                            <FormInput label={t('permitNumber')} fieldName='permit_number' rtl={isRtl} />
                             <FormInput label={t('fullName')} fieldName='full_name' rtl={isRtl} />
+                            <FormInput label={t('issueDate')} fieldName='issueDate' rtl={isRtl} />
+                            <FormInput label={t('expiryDate')} fieldName='expiryDate' rtl={isRtl} />
                             <FormInput label={t('idNumber')} fieldName='document_number' rtl={isRtl} />
                             <FormInput label={t('nationality')} fieldName='nationality' rtl={isRtl} />
-                            <FormInput label={t('birthDate')} fieldName='birth_date' rtl={isRtl} />
-
                             <div className="col-span-2 md:col-span-1">
                                 <label className={`block text-sm font-bold text-gray-700 ${isRtl ? 'text-right' : ''}`}>
                                     {t('gender')}
@@ -256,9 +257,12 @@ export default function AddCertificateForm({ data, locale }: FormProps) {
                                     <option value="female">{t('female')}</option>
                                 </Field>
                             </div>
-
+                            <FormInput label={t('companyNumber')} fieldName='company_number' rtl={isRtl} />
                             <FormInput label={t('permitType')} fieldName='permit_type' rtl={isRtl} />
-                            <FormInput label={t('permitNumber')} fieldName='permit_number' rtl={isRtl} />
+                            <FormInput label={t('purposeOfPermit')} fieldName='purposeOfPermit' rtl={isRtl} />
+                            <FormInput label={t('birthDate')} fieldName='birth_date' rtl={isRtl} />
+
+
                             <FormInput label={t('organization')} fieldName='organization' rtl={isRtl} />
                             <FormInput label={t('bloodType')} fieldName='blood_type' rtl={isRtl} />
                             <FormInput label={t('disability')} fieldName='disability' rtl={isRtl} />
@@ -269,15 +273,12 @@ export default function AddCertificateForm({ data, locale }: FormProps) {
                             <FormInput label={t('gateNumber')} fieldName='gate_number' rtl={isRtl} />
                             <FormInput label={t('campCapacity')} fieldName='camp_capacity' rtl={isRtl} />
                             <FormInput label={t('serviceProvider')} fieldName='service_provider' rtl={isRtl} />
-                            <FormInput label={t('companyNumber')} fieldName='company_number' rtl={isRtl} />
                             <FormInput label={t('serviceGroupInMecca')} fieldName='service_group_in_mecca' rtl={isRtl} />
                             <FormInput label={t('serviceGroupContactInMecca')} fieldName='service_group_contact_in_mecca' rtl={isRtl} />
                             <FormInput label={t('accommodationInMecca')} fieldName='accommodation_in_mecca' rtl={isRtl} />
                             <FormInput label={t('accommodationInMedina')} fieldName='accommodation_in_medina' rtl={isRtl} />
-                            <FormInput label={t('issueDate')} fieldName='issueDate' rtl={isRtl} />
-                            <FormInput label={t('expiryDate')} fieldName='expiryDate' rtl={isRtl} />
+
                             <FormInput label={t('visaNumber')} fieldName='visaNumber' rtl={isRtl} />
-                            <FormInput label={t('purposeOfPermit')} fieldName='purposeOfPermit' rtl={isRtl} />
                             <FormInput label={t('printDate')} fieldName='printDate' rtl={isRtl} />
                         </div>
 
