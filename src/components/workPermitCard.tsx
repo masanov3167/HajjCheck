@@ -151,7 +151,7 @@ export default function SaudiPermitCard({ data, setGeneratedPdf, certificateRef 
                         <div className="w-[100px] flex justify-center items-center">
                             <QrCode setGeneratedPdf={setGeneratedPdf} link={`${process.env.NEXT_PUBLIC_DOMEN!}/${data.number}`} />
                         </div>
-                        <div className="w-[calc(100%-100px)]">
+                        <div className="w-[calc(100%-100px)] -mt-2">
                             <p className="text-sm text-gray-700 text-right text-[17px]">تعليمات:</p>
                             <ol className="text-xs text-right custom-list" dir="rtl">
                                 <li className="mt-[8px] text-[17px]">
